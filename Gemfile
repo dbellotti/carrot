@@ -22,6 +22,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 
 gem 'slim-rails'
+gem 'rails_12factor'
 
 group :development do
   gem 'guard'
