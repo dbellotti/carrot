@@ -1,3 +1,6 @@
 applications:
-- name: staging
+- name: carrot-staging
   host: carrot-staging
+  services:
+  - carrot-sendgrid
+  - carrot-postgres
