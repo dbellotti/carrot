@@ -6,7 +6,7 @@ class WelcomeMailerTest < ActionMailer::TestCase
 
     assert_not ActionMailer::Base.deliveries.empty?
 
-    assert_equal ['noreply@carrot.com'], email.from
+    assert_equal ['iornstein@pivotal.io'], email.from
     assert_equal ['friend@example.com'], email.to
     assert_equal 'You have been invited to Carrot', email.subject
   end
