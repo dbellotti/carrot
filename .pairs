@@ -1,0 +1,9 @@
+pairs:
+  db: David Bellott; dbellotti
+  io: Ian Ornstein; iornstein
+
+email:
+  prefix: pair
+  domain: pivotal.io
+
+global: true
