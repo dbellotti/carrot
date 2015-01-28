@@ -23,6 +23,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'slim-rails'
 gem 'rails_12factor'
+gem 'devise'
 
 group :development do
   gem 'guard'
@@ -36,8 +37,10 @@ group :development, :test do
   gem 'spring'
 
   gem 'minitest-spec-rails'
-  gem 'minitest-emoji'
+  gem 'minitest-reporters'
+  gem 'mocha'
   gem 'pry'
   gem 'pry-nav'
+  # gem 'database_cleaner'
 end
 
