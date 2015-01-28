@@ -12,6 +12,8 @@ class HomeController < ApplicationController
     redirect_to root_path, notice: 'user added'
   end
 
+  private
+
   def generate_password
     Devise.friendly_token.first(8)
   end
