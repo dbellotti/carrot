@@ -1,18 +1,14 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
-require 'minitest/reporters'
-require 'mocha/mini_test'
-# require 'database_cleaner'
+require 'minitest/pride'
 
-reporter_options = { color: true }
-Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(reporter_options)]
-
-# DatabaseCleaner.strategy = :truncation
-
-# class ActiveSupport::TestCase
+class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  # fixtures :all
+  fixtures :all
 
   # Add more helper methods to be used by all tests here...
-# end
+  def teardown
+    ActionMailer::Base.deliveries.clear
+  end
+end

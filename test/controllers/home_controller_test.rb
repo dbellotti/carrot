@@ -1,56 +1,48 @@
 require 'test_helper'
 
-class HomeControllerTest < ActionController::TestCase
+class HomeControllerTest  < ActionController::TestCase
+  def setup
+    @user1 = users(:donnie)
+    @user2 = users(:raf)
+  end
+
   test "should get index" do
-    get :index
+    @controller.index
 
     assert_response :success
   end
 
-  describe "add_user" do
-    test "user should be created" do
-      User.count.must_equal 0
+  test "user should be created" do
+    count = User.count
+    get :add_user, email: 'foo@bar.com'
 
-      get :add_user, email: 'foo@bar.com'
-
-      User.count.must_equal 1
-    end
-
-    test "user attributes should be set" do
-      @controller.expects(:generate_password).returns('password')
-
-      get :add_user, email: 'foo@bar.com'
-
-      u = User.first
-      u.email.must_equal 'foo@bar.com'
-      u.valid_password?('password').must_equal true
-    end
-
-    test "redirect to root path" do
-      get :add_user
-
-      assert_redirected_to root_path
-      @controller.flash[:notice].must_equal 'user added'
-    end
+    assert_equal User.count, count + 1
   end
 
-  describe "send_carrot" do
-    before do
-      user1 = User.create(email: "1-#{rand(2)}@example.com", password: 'password')
-      user2 = User.create(email: "2-#{rand(2)}@example.com", password: 'password')
+  test "user email should be set" do
+    get :add_user, email: 'foo@bar.com'
 
-      @controller.expects(:deliver_carrot_email).with(user1, user2)
-    end
+    assert_equal User.last.email, 'foo@bar.com'
+  end
 
-    test "it should send a carrot" do
-      get :send_carrot
-    end
+  test "redirect to root path" do
+    get :add_user
 
-    test "redirect to root path" do
-      get :send_carrot
+    assert_redirected_to root_path
+    assert_equal @controller.flash[:notice], 'user added'
+  end
 
-      assert_redirected_to root_path
-      @controller.flash[:notice].must_equal 'carrot sent'
-    end
+  test "send carrot should send a carrot" do
+    get :send_carrot
+
+    assert_includes ActionMailer::Base.deliveries.first.to, @user1.email
+    assert_includes ActionMailer::Base.deliveries.first.to, @user2.email
+  end
+
+  test "send carrot redirect to root path" do
+    get :send_carrot
+
+    assert_redirected_to root_path
+    assert_equal @controller.flash[:notice], 'carrot sent'
   end
 end

@@ -36,11 +36,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
 
-  gem 'minitest-spec-rails'
-  gem 'minitest-reporters'
-  gem 'mocha'
   gem 'pry'
   gem 'pry-nav'
-  # gem 'database_cleaner'
 end
 

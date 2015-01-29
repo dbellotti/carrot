@@ -4,10 +4,10 @@ class WelcomeMailerTest < ActionMailer::TestCase
   test "invite" do
     email = WelcomeMailer.invite('friend@example.com').deliver_now
 
-    ActionMailer::Base.deliveries.empty?.must_equal false
+    assert_equal ActionMailer::Base.deliveries.empty?, false
 
-    email.from.must_equal ['carrot@pivotal.io']
-    email.to.must_equal ['friend@example.com']
-    email.subject.must_equal 'You have been invited to Carrot'
+    assert_equal email.from, ['carrot@pivotal.io']
+    assert_equal email.to, ['friend@example.com']
+    assert_equal email.subject, 'You have been invited to Carrot'
   end
 end
