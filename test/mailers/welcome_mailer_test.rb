@@ -6,7 +6,7 @@ class WelcomeMailerTest < ActionMailer::TestCase
 
     ActionMailer::Base.deliveries.empty?.must_equal false
 
-    email.from.must_equal ['iornstein@pivotal.io']
+    email.from.must_equal ['carrot@pivotal.io']
     email.to.must_equal ['friend@example.com']
     email.subject.must_equal 'You have been invited to Carrot'
   end
