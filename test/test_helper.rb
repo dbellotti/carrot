@@ -12,3 +12,13 @@ class ActiveSupport::TestCase
     ActionMailer::Base.deliveries.clear
   end
 end
+
+module ActiveSupport
+  module Testing
+    module TaggedLogging
+      def before_setup
+        super
+      end
+    end
+  end
+end

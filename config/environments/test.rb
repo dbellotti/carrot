@@ -30,7 +30,6 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
-  config.action_mailer.logger = Rails.logger
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
@@ -41,5 +40,9 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.active_record.logger = Rails.logger
+  test_log = Logger.new('log/test.log')
+  config.action_mailer.logger     = test_log
+  config.action_controller.logger = test_log
+  config.active_record.logger     = test_log
+  config.action_view.logger       = test_log
 end
