@@ -30,7 +30,7 @@ class HomeControllerTest  < ActionController::TestCase
     get :add_user
 
     assert_redirected_to root_path
-    assert_equal @controller.flash[:error], ["Email can't be blank"]
+    assert_equal @controller.flash[:alert], "Email can't be blank"
   end
 
   test "send carrot should send a carrot" do

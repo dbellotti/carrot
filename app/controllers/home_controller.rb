@@ -10,7 +10,7 @@ class HomeController < ApplicationController
       WelcomeMailer.invite(user.email).deliver_now
       flash[:notice] = 'user added'
     else
-      flash[:alert] = user.errors.full_messages
+      flash[:alert] = user.errors.full_messages.join(', ')
     end
 
     redirect_to root_path
