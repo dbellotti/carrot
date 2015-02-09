@@ -1,10 +1,17 @@
+.section
+  = image_tag 'http://gpfarah.com/gpfarahcom/wp-content/uploads/2014/03/a91fc0717ec561863cdb2b78f375ed037dfbdfc1.jpg', width: '300px'
 
-= image_tag 'http://gpfarah.com/gpfarahcom/wp-content/uploads/2014/03/a91fc0717ec561863cdb2b78f375ed037dfbdfc1.jpg'
+.section
+  .row
+    = form_tag add_user_path, class: 'col s12 offset-s4' do
+      .row
+        .input-field.col.s4
+          input id="email" type="email" class="validate"
+          label for="email" Email
+      .row style="margin-bottom:0;"
+        .input-field
+          button type="submit" class="col s4 btn waves-effect waves-light orange accent-3" request invite
 
-= form_tag add_user_path
-  = email_field_tag :email
-  = submit_tag 'get an invite'
-
-h4 or
-= link_to 'send a carrot', send_carrot_path
-
+  .row
+    = link_to send_carrot_path, class: "btn-large btn-floating btn-flat waves-effect waves-circle waves-orange", title: "send carrot" do
+      i.mdi-content-send

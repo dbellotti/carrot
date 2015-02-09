@@ -21,6 +21,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim-rails'
 gem 'rails_12factor'
 gem 'devise'
+gem 'materialize-sass'
 
 group :development do
   gem 'guard'

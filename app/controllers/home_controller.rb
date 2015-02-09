@@ -4,12 +4,16 @@ class HomeController < ApplicationController
   end
 
   def add_user
-    if params.has_key?(:email)
-      user = User.create(email: params[:email], password: generate_password)
+    user = User.create(email: params[:email], password: generate_password)
+
+    if user.valid?
       WelcomeMailer.invite(user.email).deliver_now
+      flash[:notice] = 'user added'
+    else
+      flash[:alert] = user.errors.full_messages
     end
 
-    redirect_to root_path, notice: 'user added'
+    redirect_to root_path
   end
 
   def send_carrot

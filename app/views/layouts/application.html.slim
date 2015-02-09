@@ -6,8 +6,8 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    p.notice= notice
-    p.alert= alert
-    h1 Carrot App
+    .container
+      p.notice= notice
+      p.alert= alert
 
-    == yield
+      == yield

@@ -17,6 +17,7 @@ class HomeControllerTest  < ActionController::TestCase
     get :add_user, email: 'foo@bar.com'
 
     assert_equal User.count, count + 1
+    assert_equal @controller.flash[:notice], 'user added'
   end
 
   test "user email should be set" do
@@ -29,7 +30,7 @@ class HomeControllerTest  < ActionController::TestCase
     get :add_user
 
     assert_redirected_to root_path
-    assert_equal @controller.flash[:notice], 'user added'
+    assert_equal @controller.flash[:error], ["Email can't be blank"]
   end
 
   test "send carrot should send a carrot" do
